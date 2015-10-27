@@ -59,6 +59,7 @@ class Eli
 class Pixiv
 
 	constructor: (couple) ->
+		@total = 0
 		@couple = couple
 		@option = {
 			url: 'http://www.pixiv.net/tags.php',
@@ -76,17 +77,14 @@ class Pixiv
 		request.get @option, (err, res) ->
 			if !err && res.statusCode == 200
 				$ = cheerio.load res.body
-				nums = []
+				count = 0
 				$('.more').each ->
 					elem = $ @
 					text = elem.text()
 					num = text.replace(/^[^\d]*(\d+) 件$/, "$1")
 					num = parseInt(num, 10)
 					if isNumber(num)
-						nums.push(num)
-				count = 0
-				for num in nums
-					count += num
+						count += num
 				d.resolve count
 			else
 				d.reject err
@@ -94,19 +92,14 @@ class Pixiv
 
 	getCouplingAllNums: ->
 		d = Q.defer()
-		count = 0
-		Q
-			.when(getCouplingNums.call @, @couple.join(""))
-			.then (val) ->
-				count += val
+		Q.all([
+				getCouplingNums.call(@, @.couple.join("")),
+				getCouplingNums.call(@, @.couple.reverse().join(""))
+			])
 			.fail (err) ->
 				d.reject err
-			.then(getCouplingNums.call @, @couple.reverse().join(""))
-			.then (val) ->
-				count += val
-				d.resolve count
-			.fail (err) ->
-				d.reject err
+			.spread (data1, data2) ->
+				d.resolve data1+data2
 		d.promise
 
 module.exports = (robot) ->
