@@ -5,6 +5,8 @@
   "author": "windyakin <windyakin@gmail.com>",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
+    "cheerio": "^0.19.0",
+    "extend": "^3.0.0",
     "hubot": "^2.16.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.2.2",
@@ -16,7 +18,9 @@
     "hubot-rules": "^0.1.1",
     "hubot-scripts": "^2.16.2",
     "hubot-shipit": "^0.2.0",
-    "hubot-slack": "^3.4.1"
+    "hubot-slack": "^3.4.1",
+    "q": "^1.4.1",
+    "request": "^2.65.0"
   },
   "engines": {
     "node": "0.10.x"
