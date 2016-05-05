@@ -7,6 +7,6 @@
 module.exports = (robot) ->
 	robot.hear /錯覚/i, (res) ->
 		res.send "ん…？錯覚…？"
-		res.send "それでは聴いてください… 錯覚CROSSROADS"
+		res.send "それでは聴いてください… 錯覚CROSSROADS \n https://www.youtube.com/watch?v=yhg88RvM7bE"
 
 
