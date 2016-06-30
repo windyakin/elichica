@@ -12,7 +12,7 @@ Q = require 'q'
 class Character
 
 	constructor: ->
-		@chara = ["ほの", "こと", "うみ", "にこ", "のぞ", "えり", "まき", "りん", "ぱな", "あり", "ゆき"]
+		@chara = ["ほの", "こと", "うみ", "にこ", "のぞ", "えり", "まき", "りん", "ぱな"]
 
 	deleteCharacter = (index) ->
 		@chara.splice(index, 1)
