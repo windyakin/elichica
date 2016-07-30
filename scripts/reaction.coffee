@@ -14,3 +14,4 @@ addReactions = (msg, name) ->
       'timestamp': msg.message.rawMessage.ts
     }
   }
+  request.post options
